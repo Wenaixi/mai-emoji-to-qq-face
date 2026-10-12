@@ -239,8 +239,14 @@ def split_text_with_faces(text: str) -> List[Dict[str, Any]]:
             if prev_text:
                 segments.append({"type": "text", "data": prev_text})
 
-        # 构造官方原版适配器原生支持的 face 消息段
-        segments.append({"type": "face", "data": {"id": face_id}})
+        # 构造宿主 DictComponent 包装的 face 消息段，防止宿主反序列化丢失 type="face" 导致 [unsupported:dict]
+        segments.append({
+            "type": "dict",
+            "data": {
+                "type": "face",
+                "data": {"id": face_id},
+            },
+        })
         last_idx = end
 
     if last_idx < len(text):
@@ -267,6 +273,20 @@ def convert_message_segments(raw_message: List[Dict[str, Any]]) -> List[Dict[str
             text_data = str(item.get("data") or "")
             splitted = split_text_with_faces(text_data)
             new_segments.extend(splitted)
+        elif item_type == "face":
+            # 若原始消息中已存在裸 face 段，自动封装为 DictComponent 格式防丢
+            face_payload = item.get("data", item)
+            face_id = str(face_payload.get("id") or "").strip() if isinstance(face_payload, dict) else str(face_payload or "").strip()
+            if face_id:
+                new_segments.append({
+                    "type": "dict",
+                    "data": {
+                        "type": "face",
+                        "data": {"id": face_id},
+                    },
+                })
+            else:
+                new_segments.append(item)
         else:
             new_segments.append(item)
 
