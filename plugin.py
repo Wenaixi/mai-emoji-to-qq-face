@@ -41,6 +41,11 @@ class Emoji2FacePlugin(MaiBotPlugin):
         if not isinstance(message_dict, dict):
             return {"action": "continue", "modified_kwargs": kwargs}
 
+        # 平台校验：仅对 QQ 平台出站消息进行 Face 转换，保护跨平台兼容性
+        platform = str(kwargs.get("platform") or message_dict.get("platform") or "qq").lower()
+        if platform != "qq":
+            return {"action": "continue", "modified_kwargs": kwargs}
+
         raw_message_data = message_dict.get("raw_message")
         if not isinstance(raw_message_data, list):
             return {"action": "continue", "modified_kwargs": kwargs}
