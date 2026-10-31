@@ -4,7 +4,10 @@
   "name": "Emoji自动转正统QQ小黄脸",
   "version": "1.0.0",
   "description": "基于出站拦截钩子（send_service.before_send），自动将消息中的 Unicode Emoji 转换为 QQ 原生小黄脸表情段",
-  "author": "Wenaixi",
+  "author": {
+    "name": "Wenaixi",
+    "url": "https://github.com/Wenaixi/mai-emoji-to-qq-face"
+  },
   "license": "MIT",
   "urls": {
     "repository": "https://github.com/Wenaixi/emoji2face",
