@@ -3,3 +3,6 @@ __pycache__/
 *$py.class
 *.bak*
 .DS_Store
+
+# 本地专属记忆库（禁止提交与推送）
+CLAUDE.md
