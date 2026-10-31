@@ -6,7 +6,7 @@
 
 基于出站拦截钩子，自动将回复消息中的 Unicode Emoji 转换为 QQ 原生 Face 表情段。
 
-- **插件目录**：`emoji2face`
+- **插件目录**：`wenaixi_mai_emoji_to_qq_face`
 - **生效版本**：`v1.0.0`
 - **开源许可证**：`MIT`
 
@@ -37,6 +37,6 @@
 ## 上游项目与开源溯源
 
 - **原作者 / 组织**：`Wenaixi (本地自研与社区规范分支)`
-- **官方原版开源仓库**：[https://github.com/Wenaixi/emoji2face](https://github.com/Wenaixi/emoji2face)
+- **官方原版开源仓库**：[https://github.com/Wenaixi/wenaixi_mai_emoji_to_qq_face](https://github.com/Wenaixi/wenaixi_mai_emoji_to_qq_face)
 - **开源协议**：`MIT`
 - **声明**：本项目遵循开源协议，特此致敬原作者的杰出贡献。本分支针对生产环境的高并发网络、个性化社交和抗风控需求进行了深度稳定性修复与定制化演进。
